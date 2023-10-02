@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  overflow: hidden;
+  word-break: break-all;
+  height: 100vh;
+  background-color: #fffcf9;
+  background: url('../assets/my-bg.svg') no-repeat;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-text {
+    --s: 0.1em;
+    --c: #ef476f;
+    
+    color: #0000;
+    padding-bottom: var(--s);
+    background: 
+      linear-gradient(90deg,var(--c) 50%,#f8ffe5 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+  }
+
+  #main-text:hover {--_p: 100%}
+  
+  
+
+  #main-text {
+    font-family: system-ui, sans-serif;
+    font-size: 5rem;
+    cursor: pointer;
+  }
