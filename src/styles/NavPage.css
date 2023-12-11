@@ -5,6 +5,7 @@
 
 
 card{
+    display: inline-block;
     width: max-content;
     cursor: pointer;
     border-radius: 3rem;
