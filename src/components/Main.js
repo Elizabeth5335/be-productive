@@ -7,11 +7,9 @@ import Pomodoro from "./Pomodoro";
 import TaskList from "./TaskList";
 
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQjHZVkaLZAPAQuA0V3XqlqXXfKdZ6CKA",
@@ -26,12 +24,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const database = getDatabase(app);
 
 
-
+  
 const router = createBrowserRouter([
     {
       path: "/",
@@ -48,7 +45,7 @@ const router = createBrowserRouter([
     },
   ]);
 
-  
+
 export default function Main() {
 
   const [start, setStart] = React.useState(false);
