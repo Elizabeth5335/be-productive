@@ -1,25 +1,41 @@
 .instruments{
     background-color: #fffcf9;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: auto auto;
-    gap: 3rem 10rem;
-    justify-content: center;
+    display: block;
 }
 
 
 card{
     width: max-content;
     cursor: pointer;
+    border-radius: 3rem;
 }
-card:hover{
-    transition: 0.7s;
-    transform: scale(1.1);
+
+@media screen and (min-width: 576px) {
+    card:hover{
+        transition: 0.7s;
+        transform: scale(1.1);
+        -webkit-box-shadow: 7px 4px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 7px 4px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 7px 4px 24px 0px rgba(66, 68, 90, 1);
+    }
+
+    .instruments{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: auto auto;
+        /* gap: 3rem 10rem; */
+        justify-content: center;
+    }
+
+    .instrument-img{
+        min-width: 25vw;
+    }
 }
 
 .instrument-img{
     max-width: 100%;
-    min-width: 25vw;
+    width: 100%;
+
 }
 
 .back-btn{
