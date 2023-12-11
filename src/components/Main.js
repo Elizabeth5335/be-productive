@@ -29,10 +29,22 @@ const database = getDatabase(app);
 
 
   
-const router = createBrowserRouter([
+
+
+
+export default function Main() {
+
+  const [start, setStart] = React.useState(false);
+
+  function toggleStart() {
+    setStart((prevStart) => !prevStart);
+  }
+
+
+  const router = createBrowserRouter([
     {
       path: "/",
-      element: <NavPage />,
+      element: <NavPage toggleClick={toggleStart} />,
       // errorElement: <ErrorPage />,
     },
     {
@@ -44,16 +56,7 @@ const router = createBrowserRouter([
       element: <TaskList database={database} />,
     },
   ]);
-
-
-export default function Main() {
-
-  const [start, setStart] = React.useState(false);
-
-  function toggleStart() {
-    setStart((prevStart) => !prevStart);
-  }
-
+  
   return (
     <main>
       {start ? (
