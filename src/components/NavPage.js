@@ -6,13 +6,12 @@ import "../styles/NavPage.css";
 import { Link } from "react-router-dom";
 
 export default function NavPage(props) {
-
   return (
     <div className="nav">
       <header>
-        <h1 className="back-btn" onClick={props.toggleClick}>
-          {"<==="} Back
-        </h1>
+        <Link to="/">
+          <h1 className="back-btn">{"<==="} Back</h1>
+        </Link>
       </header>
 
       <div className="instruments">

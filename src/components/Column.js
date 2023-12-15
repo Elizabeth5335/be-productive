@@ -15,7 +15,7 @@ export default function Column(props) {
               {...provided.droppableProps}
             >
               {props.tasks.map((task, index) => {
-                return <Task key={task.id} task={task} index={index} />;
+                return <Task key={task.id} task={task} index={index} columnId={props.column.id} deleteToDo={props.deleteToDo} />;
               })}
               {provided.placeholder}
             </div>

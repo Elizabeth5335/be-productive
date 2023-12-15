@@ -13,6 +13,9 @@ export default function Task(props) {
             {...provided.dragHandleProps}
           >
             {props.task.content}
+            <p>{props.task.deadline}</p>
+            <button className="delete-btn" onClick={()=>props.deleteToDo(props.columnId, props.task.id)}>X</button>
+
           </div>
         );
       }}

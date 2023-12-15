@@ -7,9 +7,9 @@ import Pomodoro from "./Pomodoro";
 import TaskList from "./TaskList";
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase } from "firebase/database";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQjHZVkaLZAPAQuA0V3XqlqXXfKdZ6CKA",
@@ -27,47 +27,40 @@ const app = initializeApp(firebaseConfig);
 
 const database = getDatabase(app);
 
-
-  
-
-
-
 export default function Main() {
-
   const [start, setStart] = React.useState(false);
 
   function toggleStart() {
     setStart((prevStart) => !prevStart);
   }
 
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <NavPage toggleClick={toggleStart} />,
+      element: (
+        <main>
+          <div className="main">
+            <Link to="/nav" id="main-text">
+              <h1>BE PRODUCTIVE</h1>
+            </Link>
+          </div>
+        </main>
+      ),
       // errorElement: <ErrorPage />,
     },
     {
+      path: "/nav",
+      element: <NavPage toggleClick={toggleStart} />,
+    },
+    {
       path: "/pomodoro",
-      element: <Pomodoro database={database}/>,
+      element: <Pomodoro database={database} />,
     },
     {
       path: "/todo",
       element: <TaskList database={database} />,
     },
   ]);
-  
-  return (
-    <main>
-      {start ? (
-        <RouterProvider router={router} />
-      ) : (
-        <div className="main">
-          <h1 onClick={toggleStart} id="main-text">
-            BE PRODUCTIVE
-          </h1>
-        </div>
-      )}
-    </main>
-  );
+
+  return <RouterProvider router={router} />;
 }
