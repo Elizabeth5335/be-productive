@@ -1,0 +1,92 @@
+.flex {
+  display: flex;
+  max-width: fit-content;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 50px;
+  max-width: 300px;
+  max-height: 315px;
+  overflow-y: auto;
+}
+
+li {
+  cursor: pointer;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: #e0e0e0;
+}
+
+.videoContainer {
+  position: relative;
+}
+
+.videoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 300px;
+}
+
+iframe {
+  width: 560px;
+  height: 315px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.music-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+  
+  .music-form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .music-form input:focus {
+    outline: none;
+    border-color: #a442ce;
+  }
+  
+  .music-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #a442ce;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .music-button:hover {
+    background-color: #6b1c8d;
+  }
+  
