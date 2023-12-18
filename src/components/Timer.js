@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export default function Timer(props) {
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState(props.time);
   const [seconds, setSeconds] = useState(0);
   const intervalRef = useRef(null);
 
@@ -25,6 +25,12 @@ export default function Timer(props) {
     return () => clearInterval(intervalRef.current);
   }, [props.timerState]);
 
+  React.useEffect(() => {
+    if (minutes === 0 && seconds === 0) {
+      props.switchTab();
+    }
+  }, [minutes, seconds]);
+
   const getTime = () => {
     const time = deadline.getTime() - Date.now();
     setMinutes(Math.floor(time / 1000 / 60));
@@ -33,7 +39,11 @@ export default function Timer(props) {
 
   return (
     <div className="timer">
-      <div className="timer" style={{ display: 'flex', justifyContent: 'center' }} role="timer">
+      <div
+        className="timer"
+        style={{ display: "flex", justifyContent: "center" }}
+        role="timer"
+      >
         <div id="minute">{minutes < 10 ? "0" + minutes : minutes}</div>:
         <div id="second">{seconds < 10 ? "0" + seconds : seconds}</div>
       </div>
