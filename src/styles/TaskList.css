@@ -1,0 +1,98 @@
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+  
+  .input,
+  .deadline {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .input:focus,
+  .deadline:focus {
+    outline: none;
+    border-color: #3ab414;
+  }
+  
+  .task-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3ab414;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }
+  
+  .task-btn:hover {
+    background-color: #22690d;
+  }
+  
+  .tasks-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+  
+  .column-container {
+    flex: 1;
+    margin: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    max-width: 300px;
+    background-color: #f9f9f9;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .task-list {
+    padding: 8px;
+    min-height: 100px;
+    max-height: 500px;
+    overflow: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+  
+  .task-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px 8px 8px 8px;
+    margin-bottom: 8px;
+    background-color: white;
+    position: relative;
+  }
+  
+  .delete-btn {
+    position: absolute;
+    top:5px;
+    right: 5px;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff0000;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-btn:hover {
+    background-color: #cc0000;
+  }
+  

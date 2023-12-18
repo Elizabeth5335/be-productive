@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Timer from "./Timer";
 import React from "react";
 
+import "../styles/Pomodoro.css"
+
 export default function Pomodoro() {
   const [timerState, setTimerState] = React.useState(false);
   const [pomodoro, setPomodoro] = React.useState(40);
@@ -63,9 +65,9 @@ export default function Pomodoro() {
       <Link to="/nav">
         <h1 className="back-btn">{"<==="} Back</h1>
       </Link>
+        <h1>Pomodoro</h1>
 
       <div className="pomodoro">
-        <h1>Pomodoro</h1>
         <div className="container">
           <div className="tabs">
             {tabs.map((tab, i) => (
@@ -81,31 +83,31 @@ export default function Pomodoro() {
           </div>
           <div className="content">
             {tabs.map((tab, i) => (
-              <div key={i}>
+              <>
                 {currentTab === `${tab.id}` && (
-                  <div>
+                  <div key={tab.id} className="tab-content">
                     <Timer
                       timerState={timerState}
                       time={tab.time}
                       switchTab={switchTab}
                     />
-                    <button onClick={startTimer}>
+                    <button className="pomodoro-btn" onClick={startTimer}>
                       {!timerState ? "Start" : "Pause"}
                     </button>
                   </div>
                 )}
-              </div>
+              </>
             ))}
           </div>
         </div>
         <div className="settings">
-          <h2>Timer</h2>
+          <h2>Settings</h2>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               setCurrentTab("1");
             }}
-            className="form"
+            className="pomodoro-form"
           >
             <label htmlFor="pomodoro">Pomodoro:</label>
             <input
@@ -135,7 +137,7 @@ export default function Pomodoro() {
               type="number"
               placeholder="Long break"
             />
-            <button type="submit" className="button">
+            <button type="submit" className="pomodoro-button">
               Save
             </button>
           </form>

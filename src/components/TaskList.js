@@ -4,6 +4,8 @@ import Column from "./Column";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Link } from "react-router-dom";
 
+import "../styles/TaskList.css"
+
 
 export default function TaskList(props) {
   const user = "admin";
@@ -190,21 +192,25 @@ export default function TaskList(props) {
         <h1 className="back-btn">{"<==="} Back</h1>
       </Link>
       <form onSubmit={createTodo} className="form">
+        <label htmlFor="input">Task</label>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="input"
+          id="input"
           type="text"
           placeholder="Task"
         />
+        <label htmlFor="deadline">Deadline</label>
         <input
           value={deadline}
+          id="deadline"
           onChange={(e) => setDeadline(e.target.value)}
           className="deadline"
           type="date"
           placeholder="Deadline"
         />
-        <button className="button">Submit</button>
+        <button className="task-btn">Submit</button>
       </form>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="tasks-container">
