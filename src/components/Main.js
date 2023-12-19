@@ -47,7 +47,6 @@ export default function Main() {
           </div>
         </main>
       ),
-      // errorElement: <ErrorPage />,
     },
     {
       path: "/nav",
