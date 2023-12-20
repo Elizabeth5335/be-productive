@@ -6,6 +6,7 @@ import ErrorPage from "./ErrorPage";
 import Pomodoro from "./Pomodoro";
 import TaskList from "./TaskList";
 import Music from "./Music";
+import Calendar from "./Calendar";
 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
@@ -63,6 +64,10 @@ export default function Main() {
     {
       path: "/music",
       element: <Music database={database} />,
+    },
+    {
+      path: "/calendar",
+      element: <Calendar database={database} />,
     },
   ]);
 
