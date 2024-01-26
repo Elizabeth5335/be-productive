@@ -9,7 +9,6 @@ export default function Music(props) {
   const [song, setSong] = React.useState("");
   const [songUrl, setSongUrl] = React.useState("");
 
-
   const user = "admin";
 
   const music = ref(props.database, "users/" + user + "/music");
@@ -20,7 +19,6 @@ export default function Music(props) {
   React.useEffect(() => {
     onValue(music, (snapshot) => {
       setVideoList(snapshot.val());
-      console.log(snapshot.val());
     });
   }, []);
 
@@ -38,13 +36,13 @@ export default function Music(props) {
 
   function addMusic(e) {
     e.preventDefault(e);
+    const newSongId = videoList.length;
 
     const newSong = {
+      id: newSongId,
       name: song,
-      url: songUrl,
+      url: convertToEmbeddedUrl(songUrl),
     };
-
-    const newSongId = videoList.length + 1;
 
     setVideoList((prev) => {
       return [...prev, newSong];
@@ -56,6 +54,33 @@ export default function Music(props) {
 
     setSong("");
     setSongUrl("");
+  }
+
+  function convertToEmbeddedUrl(youtubeUrl) {
+    const regex =
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = youtubeUrl.match(regex);
+
+    if (match && match[1]) {
+      const videoId = match[1];
+      const embeddedUrl = `https://www.youtube.com/embed/${videoId}?si=zqoHGicob0v9kq3M`;
+
+      return embeddedUrl;
+    } else {
+      return youtubeUrl;
+    }
+  }
+
+  function deleteSong(songId) {
+    const newVideoList = videoList.filter((song) => {
+      return song.id !== songId;
+    });
+
+    setVideoList(newVideoList);
+
+    update(music, {
+      [songId]: null,
+    });
   }
 
   return (
@@ -70,7 +95,15 @@ export default function Music(props) {
             <ul>
               {videoList.map((video, index) => (
                 <li key={index} onClick={() => changeVideo(index)}>
-                  {video.name}
+                  <div className="song-container">
+                    {video.name}
+                    <span
+                      className="delete-btn"
+                      onClick={() => deleteSong(video.id)}
+                    >
+                      X
+                    </span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -78,15 +111,23 @@ export default function Music(props) {
               <iframe
                 width="560"
                 height="315"
-                src={videoList[currentVideo].url}
+                src={
+                  videoList[currentVideo]
+                    ? videoList[currentVideo].url
+                    : videoList[0].url
+                }
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
               <div className="buttonContainer">
-                <button className="music-button" onClick={prevVideo}>Previous</button>
-                <button className="music-button" onClick={nextVideo}>Next</button>
+                <button className="music-button" onClick={prevVideo}>
+                  Previous
+                </button>
+                <button className="music-button" onClick={nextVideo}>
+                  Next
+                </button>
               </div>
             </div>
           </div>

@@ -172,9 +172,6 @@ export default function Pomodoro(props) {
                 type="number"
                 placeholder="Long break"
               />
-              <button type="submit" className="pomodoro-button">
-                Save
-              </button>
             </form>
           </div>
         </div>
