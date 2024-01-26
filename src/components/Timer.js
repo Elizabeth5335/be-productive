@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export default function Timer(props) {
-  const [minutes, setMinutes] = useState(props.time);
+  const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState(0);
   const intervalRef = useRef(null);
+
+  React.useEffect(() => {
+    setMinutes(props.time);
+  }, [props.time]);
 
   const deadline = new Date(new Date().getTime() + props.time * 60000);
 
