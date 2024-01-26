@@ -10,14 +10,15 @@ const defaultState = {
   shortBreak: 10,
   longBreak: 15,
 };
+
 export default function Pomodoro(props) {
   const user = "admin";
 
   const timerRef = ref(props.database, "users/" + user + "/pomodoro");
 
-  const [pomodoro, setPomodoro] = React.useState(40);
-  const [shortBreak, setShortBreak] = React.useState(10);
-  const [longBreak, setLongBreak] = React.useState(50);
+  const [pomodoro, setPomodoro] = React.useState(defaultState.pomodoro);
+  const [shortBreak, setShortBreak] = React.useState(defaultState.shortBreak);
+  const [longBreak, setLongBreak] = React.useState(defaultState.longBreak);
 
   React.useEffect(() => {
     onValue(timerRef, (snapshot) => {
@@ -33,22 +34,22 @@ export default function Pomodoro(props) {
     setTimerState((prev) => !prev);
   }
 
-  const [currentTab, setCurrentTab] = React.useState("1");
+  const [currentTab, setCurrentTab] = React.useState("pomodoro");
   const tabs = [
     {
-      id: 1,
+      id: "pomodoro",
       tabTitle: "Pomodoro",
       time: pomodoro,
       content: "Time to focus",
     },
     {
-      id: 2,
+      id: "shortBreak",
       tabTitle: "Short break",
       time: shortBreak,
       content: "Time to break",
     },
     {
-      id: 3,
+      id: "longBreak",
       tabTitle: "Long break",
       time: longBreak,
       content: "Time to break",
@@ -59,18 +60,17 @@ export default function Pomodoro(props) {
 
   function switchTab() {
     switch (currentTab) {
-      case "1":
-        counter < 3 ? setCurrentTab("2") : setCurrentTab("3");
+      case "pomodoro":
+        counter < 3 ? setCurrentTab("shortBreak") : setCurrentTab("longBreak");
         counter === 3 ? setCounter(0) : setCounter((prev) => prev + 1);
         break;
-      case "2":
-        setCurrentTab("1");
+      case "shortBreak":
+        setCurrentTab("pomodoro");
         break;
-      case "3":
-        setCurrentTab("1");
+      case "longBreak":
+        setCurrentTab("pomodoro");
         break;
     }
-    console.log(currentTab);
     setTimerState(false);
   }
 
@@ -90,9 +90,9 @@ export default function Pomodoro(props) {
         <div className="pomodoro">
           <div className="container">
             <div className="tabs">
-              {tabs.map((tab, i) => (
+              {tabs.map((tab) => (
                 <button
-                  key={i}
+                  key={tab.id}
                   id={tab.id}
                   disabled={currentTab === `${tab.id}`}
                   onClick={handleTabClick}
@@ -102,8 +102,8 @@ export default function Pomodoro(props) {
               ))}
             </div>
             <div className="content">
-              {tabs.map((tab, i) => (
-                <div key={tab.id} >
+              {tabs.map((tab) => (
+                <div key={tab.id}>
                   {currentTab === `${tab.id}` && (
                     <div className="tab-content">
                       <Timer
