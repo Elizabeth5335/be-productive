@@ -86,7 +86,7 @@ export default function Pomodoro(props) {
       </Link>
       <h1>Pomodoro</h1>
 
-      {pomodoro >= 0 && longBreak && shortBreak && (
+      {pomodoro >= 0 && longBreak>=0 && shortBreak>=0 && (
         <div className="pomodoro">
           <div className="container">
             <div className="tabs">
